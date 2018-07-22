@@ -1,0 +1,7 @@
+.image-container, .text {
+  display: flex;
+}
+
+.text, .text-container, input[name="picture"] {
+  margin: 10px;
+}

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './App.css';
 
 class MemeCreator extends Component {
     state = {
@@ -8,9 +9,7 @@ class MemeCreator extends Component {
     };
 
     componentDidUpdate(props, state) {
-        console.log('update');
         const {bottomLine, topLine, imgSrc} = this.state;
-        console.log(imgSrc);
         const canvas = document.querySelector('canvas');
         const ctx = canvas.getContext('2d');
         // Your code here
@@ -63,18 +62,18 @@ class MemeCreator extends Component {
             <input onChange={ (e) => this.handleFileSelect(e)}
              type='file' name='picture' />
         </div>
-        <div id='image-container'>
+        <div className='image-container'>
             <canvas width='500' height='500'></canvas>
-            <div>
+            <div className='text-container'>
                 <span>Top Line:</span><br/>
-                <input onChange={ (e) =>
+                <input className='text' onChange={ (e) =>
                   this.setState({topLine: e.target.value}) } value={ topLine }
                   name='topLine' type='text' />
                 <span>Bottom Line:</span>
-                <input onChange={ (e) =>
+                <input className='text' onChange={ (e) =>
                   this.setState({bottomLine: e.target.value}) }
                   value={ bottomLine } name='bottomLine' type='text' />
-                <button onClick={ (e) =>
+                <button className='text' onClick={ (e) =>
                   window.open(document.querySelector('canvas').toDataURL()) }>
                   Save</button>
             </div>
