@@ -14,6 +14,8 @@ class MemeCreator extends Component {
         const ctx = canvas.getContext('2d');
         // Your code here
         if (imgSrc != null) {
+            canvas.width = imgSrc.width;
+            canvas.height = imgSrc.height;
             ctx.drawImage(imgSrc, 0, 0, canvas.width, canvas.height);
         }
         ctx.font = '36pt Impact';
@@ -36,12 +38,17 @@ class MemeCreator extends Component {
 
         const reader = new FileReader();
         const self = this;
+        const maxHeight = 300;
         reader.onload = function(fileObject) {
             const data = fileObject.target.result;
 
             // Create an image object
             const image = new Image();
             image.onload = function(f) {
+                if (image.height > maxHeight) {
+                  image.width *= maxHeight / image.height;
+                  image.height = maxHeight;
+                }
                 const imgSrc = this;
                 self.setState({
                     imgSrc,
